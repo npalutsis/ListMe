@@ -11,6 +11,8 @@ import Firebase
 
 class LoginController: UIViewController {
     
+    var messagesController: MessagesController?
+    
     let inputsContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
@@ -23,13 +25,13 @@ class LoginController: UIViewController {
     lazy var loginRegisterButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = UIColor(r: 80, g: 101, b: 161)
-        button.setTitle("Register", for: .normal)
+        button.setTitle("Login", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 5
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         
-        button.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleLoginRegister), for: .touchUpInside)
         
         return button
     }()
@@ -55,41 +57,8 @@ class LoginController: UIViewController {
             }
             
             // successfully loggin in our user
+            self.messagesController?.fetchUserAndSetupNavBarTitle()
             self.dismiss(animated: true, completion: nil)
-        })
-    }
-    
-    func handleRegister() {
-        guard let email = emailTextField.text, let password = passwordTextField.text, let name = nameTextField.text else {
-            print("Form is not valid")
-            return
-        }
-        
-        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user: FIRUser?, error) in
-            
-            if error != nil {
-                print(error!)
-                return
-            }
-            
-            guard let uid = user?.uid else {
-                return
-            }
-            
-            // successfully authenticated user
-            let ref = FIRDatabase.database().reference(fromURL: "https://listme-b5d36.firebaseio.com/")
-            let usersReference = ref.child("users").child(uid)
-            let values = ["name": name, "email": email]
-            usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
-            
-                if err != nil {
-                    print(err!)
-                    return
-                }
-                
-                self.dismiss(animated: true, completion: nil)
-            
-            })
         })
     }
     
@@ -129,10 +98,14 @@ class LoginController: UIViewController {
         return tf
     }()
     
-    let profileImageView: UIImageView = {
+    lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "gameofthrones_splash")
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
+        imageView.isUserInteractionEnabled = true
+        
         return imageView
     }()
     
@@ -159,6 +132,7 @@ class LoginController: UIViewController {
         
         // change top and bottom anchors of nameTextField
         if (loginRegisterSegmentedControl.selectedSegmentIndex == 0) {
+            nameTextField.text = ""
             nameTextField.placeholder = ""
             nameTextField.isUserInteractionEnabled = false
         } else {

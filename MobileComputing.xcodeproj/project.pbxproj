@@ -9,16 +9,24 @@
 /* Begin PBXBuildFile section */
 		A0FD079BEA5CED9FC50CFC66 /* Pods_MobileComputing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8BFB5857E639C03C5AEFD9 /* Pods_MobileComputing.framework */; };
 		AB4C6D5B59EB60857ABF309D /* Pods_MobileComputingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD02FF4D6688D64FD111BDD1 /* Pods_MobileComputingUITests.framework */; };
+		EBD2697E1EA2C6F900F75FEC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD2697D1EA2C6F900F75FEC /* TabBarController.swift */; };
+		EBD269801EA2D3B600F75FEC /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD2697F1EA2D3B600F75FEC /* NewMessageController.swift */; };
+		EBD269831EA433AF00F75FEC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD269821EA433AF00F75FEC /* User.swift */; };
 		EBE971991E95BED800C22A10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE971981E95BED800C22A10 /* AppDelegate.swift */; };
-		EBE9719B1E95BED800C22A10 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE9719A1E95BED800C22A10 /* FirstViewController.swift */; };
+		EBE9719B1E95BED800C22A10 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE9719A1E95BED800C22A10 /* HomeController.swift */; };
 		EBE9719D1E95BED800C22A10 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE9719C1E95BED800C22A10 /* SecondViewController.swift */; };
 		EBE971A21E95BED800C22A10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBE971A11E95BED800C22A10 /* Assets.xcassets */; };
 		EBE971A51E95BED800C22A10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBE971A31E95BED800C22A10 /* LaunchScreen.storyboard */; };
 		EBE971B01E95BED800C22A10 /* MobileComputingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE971AF1E95BED800C22A10 /* MobileComputingTests.swift */; };
 		EBE971BB1E95BED800C22A10 /* MobileComputingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE971BA1E95BED800C22A10 /* MobileComputingUITests.swift */; };
-		EBE971C91E95BF6100C22A10 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE971C81E95BF6100C22A10 /* ViewController.swift */; };
+		EBE971C91E95BF6100C22A10 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE971C81E95BF6100C22A10 /* MessagesController.swift */; };
 		EBE971CC1E95C6F100C22A10 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE971CB1E95C6F100C22A10 /* LoginController.swift */; };
 		EBE971D01E961B0500C22A10 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EBE971CF1E961B0500C22A10 /* GoogleService-Info.plist */; };
+		EBFCC7DC1EAD03DD009DDA2B /* LoginController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFCC7DB1EAD03DD009DDA2B /* LoginController+handlers.swift */; };
+		EBFCC7DF1EAD30C9009DDA2B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFCC7DE1EAD30C9009DDA2B /* Extensions.swift */; };
+		EBFCC7E11EAD59C1009DDA2B /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFCC7E01EAD59C1009DDA2B /* ChatLogController.swift */; };
+		EBFCC7E31EAD743A009DDA2B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFCC7E21EAD743A009DDA2B /* Message.swift */; };
+		EBFCC7E61EADA404009DDA2B /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFCC7E51EADA404009DDA2B /* UserCell.swift */; };
 		ECA7D6A0AFE232608254F049 /* Pods_MobileComputingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B54D468979BB355661A65002 /* Pods_MobileComputingTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,9 +57,12 @@
 		E232983D64C458364C66F86C /* Pods-MobileComputing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileComputing.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileComputing/Pods-MobileComputing.release.xcconfig"; sourceTree = "<group>"; };
 		E602D836152750228D192F59 /* Pods-MobileComputing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileComputing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobileComputing/Pods-MobileComputing.debug.xcconfig"; sourceTree = "<group>"; };
 		E84D483DB08D1456E275B0DF /* Pods-MobileComputingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileComputingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobileComputingTests/Pods-MobileComputingTests.release.xcconfig"; sourceTree = "<group>"; };
+		EBD2697D1EA2C6F900F75FEC /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		EBD2697F1EA2D3B600F75FEC /* NewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
+		EBD269821EA433AF00F75FEC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EBE971951E95BED800C22A10 /* MobileComputing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileComputing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBE971981E95BED800C22A10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EBE9719A1E95BED800C22A10 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		EBE9719A1E95BED800C22A10 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		EBE9719C1E95BED800C22A10 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		EBE971A11E95BED800C22A10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EBE971A41E95BED800C22A10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -62,9 +73,14 @@
 		EBE971B61E95BED800C22A10 /* MobileComputingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileComputingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBE971BA1E95BED800C22A10 /* MobileComputingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileComputingUITests.swift; sourceTree = "<group>"; };
 		EBE971BC1E95BED800C22A10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EBE971C81E95BF6100C22A10 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EBE971C81E95BF6100C22A10 /* MessagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		EBE971CB1E95C6F100C22A10 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		EBE971CF1E961B0500C22A10 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EBFCC7DB1EAD03DD009DDA2B /* LoginController+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginController+handlers.swift"; sourceTree = "<group>"; };
+		EBFCC7DE1EAD30C9009DDA2B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		EBFCC7E01EAD59C1009DDA2B /* ChatLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
+		EBFCC7E21EAD743A009DDA2B /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		EBFCC7E51EADA404009DDA2B /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +134,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EBD269811EA4338C00F75FEC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EBD269821EA433AF00F75FEC /* User.swift */,
+				EBFCC7E21EAD743A009DDA2B /* Message.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		EBE9718C1E95BED800C22A10 = {
 			isa = PBXGroup;
 			children = (
@@ -143,11 +168,14 @@
 		EBE971971E95BED800C22A10 /* MobileComputing */ = {
 			isa = PBXGroup;
 			children = (
+				EBFCC7E41EADA3EC009DDA2B /* View */,
+				EBFCC7DD1EAD30A2009DDA2B /* Helpers */,
+				EBD269811EA4338C00F75FEC /* Model */,
 				EBE971CA1E95C6C700C22A10 /* Controller */,
 				EBE971981E95BED800C22A10 /* AppDelegate.swift */,
-				EBE971C81E95BF6100C22A10 /* ViewController.swift */,
-				EBE9719A1E95BED800C22A10 /* FirstViewController.swift */,
+				EBE9719A1E95BED800C22A10 /* HomeController.swift */,
 				EBE9719C1E95BED800C22A10 /* SecondViewController.swift */,
+				EBD2697D1EA2C6F900F75FEC /* TabBarController.swift */,
 				EBE971A11E95BED800C22A10 /* Assets.xcassets */,
 				EBE971A31E95BED800C22A10 /* LaunchScreen.storyboard */,
 				EBE971A61E95BED800C22A10 /* Info.plist */,
@@ -178,8 +206,28 @@
 			isa = PBXGroup;
 			children = (
 				EBE971CB1E95C6F100C22A10 /* LoginController.swift */,
+				EBFCC7DB1EAD03DD009DDA2B /* LoginController+handlers.swift */,
+				EBE971C81E95BF6100C22A10 /* MessagesController.swift */,
+				EBD2697F1EA2D3B600F75FEC /* NewMessageController.swift */,
+				EBFCC7E01EAD59C1009DDA2B /* ChatLogController.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		EBFCC7DD1EAD30A2009DDA2B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				EBFCC7DE1EAD30C9009DDA2B /* Extensions.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		EBFCC7E41EADA3EC009DDA2B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EBFCC7E51EADA404009DDA2B /* UserCell.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -464,9 +512,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBE9719D1E95BED800C22A10 /* SecondViewController.swift in Sources */,
-				EBE971C91E95BF6100C22A10 /* ViewController.swift in Sources */,
+				EBFCC7E61EADA404009DDA2B /* UserCell.swift in Sources */,
+				EBE971C91E95BF6100C22A10 /* MessagesController.swift in Sources */,
+				EBFCC7DC1EAD03DD009DDA2B /* LoginController+handlers.swift in Sources */,
 				EBE971991E95BED800C22A10 /* AppDelegate.swift in Sources */,
-				EBE9719B1E95BED800C22A10 /* FirstViewController.swift in Sources */,
+				EBD2697E1EA2C6F900F75FEC /* TabBarController.swift in Sources */,
+				EBFCC7E11EAD59C1009DDA2B /* ChatLogController.swift in Sources */,
+				EBFCC7DF1EAD30C9009DDA2B /* Extensions.swift in Sources */,
+				EBD269831EA433AF00F75FEC /* User.swift in Sources */,
+				EBD269801EA2D3B600F75FEC /* NewMessageController.swift in Sources */,
+				EBFCC7E31EAD743A009DDA2B /* Message.swift in Sources */,
+				EBE9719B1E95BED800C22A10 /* HomeController.swift in Sources */,
 				EBE971CC1E95C6F100C22A10 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
