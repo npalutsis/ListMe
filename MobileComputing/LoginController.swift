@@ -11,7 +11,7 @@ import Firebase
 
 class LoginController: UIViewController {
     
-    var messagesController: MessagesController?
+    var homeController: HomeController?
     
     let inputsContainerView: UIView = {
         let view = UIView()
@@ -24,7 +24,7 @@ class LoginController: UIViewController {
     
     lazy var loginRegisterButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor(r: 80, g: 101, b: 161)
+        button.backgroundColor = UIColor(r: 123, g: 160, b: 90)
         button.setTitle("Login", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 5
@@ -57,7 +57,7 @@ class LoginController: UIViewController {
             }
             
             // successfully loggin in our user
-            self.messagesController?.fetchUserAndSetupNavBarTitle()
+            self.homeController?.fetchUserAndSetupNavBarTitle()
             self.dismiss(animated: true, completion: nil)
         })
     }
@@ -100,7 +100,7 @@ class LoginController: UIViewController {
     
     lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "gameofthrones_splash")
+        imageView.image = UIImage(named: "Logo")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
@@ -157,7 +157,7 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor(r: 61, g: 91, b: 151)
+        view.backgroundColor = UIColor(r: 147, g: 190, b: 108)
         
         view.addSubview(inputsContainerView)
         view.addSubview(loginRegisterButton)
@@ -181,9 +181,9 @@ class LoginController: UIViewController {
     func setupProfileImageView() {
         // need x, y, width, height constraints
         profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileImageView.bottomAnchor.constraint(equalTo: loginRegisterSegmentedControl.topAnchor, constant: -12).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        profileImageView.bottomAnchor.constraint(equalTo: loginRegisterSegmentedControl.topAnchor, constant: -15).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
     }
     
     var inputsContainerViewHeightAnchor: NSLayoutConstraint?
