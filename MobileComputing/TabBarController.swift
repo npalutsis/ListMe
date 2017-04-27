@@ -10,25 +10,46 @@ import UIKit
 
 class CustomTabBarController: UITabBarController {
     
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        
-//        //setup our custom view controllers
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //setup our custom view controllers
 //        let layout = UICollectionViewFlowLayout()
-//        let friendsController = FriendsController(collectionViewLayout: layout)
+        
+        let homeController = UINavigationController(rootViewController: HomeController())
+        homeController.tabBarItem.title = "Home"
+        homeController.tabBarItem.image = UIImage(named: "home")
+        
+        let messagesController = UINavigationController(rootViewController: MessagesController())
+        messagesController.tabBarItem.title = "Messages"
+        messagesController.tabBarItem.image = UIImage(named: "messages")
+        
+        let newListingController = UINavigationController(rootViewController: NewListingController())
+        newListingController.tabBarItem.title = "Sell"
+        newListingController.tabBarItem.image = UIImage(named: "sell")
+        
+        let notificationsController = UINavigationController(rootViewController: NotificationsController())
+        notificationsController.tabBarItem.title = "Notifications"
+        notificationsController.tabBarItem.image = UIImage(named: "notifications")
+        
+        let userProfileController = UINavigationController(rootViewController: UserProfileController())
+        userProfileController.tabBarItem.title = "User"
+        userProfileController.tabBarItem.image = UIImage(named: "profile")
+        
+        viewControllers = [homeController, messagesController, newListingController, notificationsController, userProfileController]
 //        let recentMessagesNavController = UINavigationController(rootViewController: friendsController)
 //        recentMessagesNavController.tabBarItem.title = "Recent"
 //        recentMessagesNavController.tabBarItem.image = UIImage(named: "recent")
 //        
 //        viewControllers = [recentMessagesNavController, createDummyNavControllerWithTitle("Calls", imageName: "calls"), createDummyNavControllerWithTitle("Groups", imageName: "groups"), createDummyNavControllerWithTitle("People", imageName: "people"), createDummyNavControllerWithTitle("Settings", imageName: "settings")]
-//    }
-//    
-//    fileprivate func createDummyNavControllerWithTitle(_ title: String, imageName: String) -> UINavigationController {
-//        let viewController = UIViewController()
-//        let navController = UINavigationController(rootViewController: viewController)
-//        navController.tabBarItem.title = title
-//        navController.tabBarItem.image = UIImage(named: imageName)
-//        return navController
-//    }
+    }
+    
+    private func createDummyNavControllerWithTitle(_ title: String, imageName: String) -> UINavigationController {
+        let viewController = UIViewController()
+        let navController = UINavigationController(rootViewController: viewController)
+        navController.tabBarItem.title = title
+        navController.tabBarItem.image = UIImage(named: imageName)
+        return navController
+    }
     
 }

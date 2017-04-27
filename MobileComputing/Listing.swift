@@ -10,6 +10,7 @@ import UIKit
 
 class Listing: NSObject {
     
+    var id: String?
     var title: String?
     var text: String?
     var sellerId: String?

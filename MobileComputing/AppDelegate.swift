@@ -22,40 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-//        let tabBarController = UITabBarController()
-//        
-//        let tabViewController1 = HomeController()
-//        let tabViewController2 = MessagesController()
-//        let tabViewController3 = NewListingController()
-//        let tabViewController4 = NotificationsController()
-//        let tabViewController5 = UserProfileController()
-//        
-//        tabViewController1.tabBarItem = UITabBarItem(
-//            title: "Home",
-//            image: UIImage(named: "home"),
-//            tag: 1)
-//        tabViewController2.tabBarItem = UITabBarItem(
-//            title: "Messages",
-//            image:UIImage(named: "messages") ,
-//            tag:2)
-//        tabViewController3.tabBarItem = UITabBarItem(
-//            title: "Sell",
-//            image:UIImage(named: "sell") ,
-//            tag:2)
-//        tabViewController4.tabBarItem = UITabBarItem(
-//            title: "Notifications",
-//            image:UIImage(named: "notifications") ,
-//            tag:2)
-//        tabViewController5.tabBarItem = UITabBarItem(
-//            title: "User",
-//            image:UIImage(named: "profile") ,
-//            tag:2)
-//        
-//        let controllers = [tabViewController1, tabViewController2, tabViewController3, tabViewController4, tabViewController5]
-//        tabBarController.viewControllers = controllers
-//        window?.rootViewController = tabBarController
-        
-        window?.rootViewController = UINavigationController(rootViewController: HomeController())
+//        window?.rootViewController = UINavigationController(rootViewController: HomeController())
+        window?.rootViewController = CustomTabBarController()
         
         return true
     }

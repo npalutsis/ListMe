@@ -13,43 +13,60 @@ class ListingCell: UITableViewCell {
     
     var listing: Listing? {
         didSet {
-//            if let toId = listing?.toId {
-//                let ref = FIRDatabase.database().reference().child("listings").child(toId)
-//                ref .observeSingleEvent(of: .value, with: { (snapshot) in
-//                    
+            if let id = listing?.id {
+                let ref = FIRDatabase.database().reference().child("listings").child(id)
+                ref .observeSingleEvent(of: .value, with: { (snapshot) in
+
 //                    print(snapshot)
-//                    
-//                    if let dictionary = snapshot.value as? [String: AnyObject] {
-//                        self.textLabel?.text = dictionary["toId"] as? String
-//                        
-//                        if let profileImageUrl = dictionary["profileImageUrl"] as? String {
-//                            self.profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
-//                        }
-//                    }
-//                }, withCancel: nil)
-//            }
-            
-            detailTextLabel?.text = listing?.text
-            
-            if let seconds = listing?.timestamp?.doubleValue {
-                let timestampDate = NSDate(timeIntervalSince1970: seconds)
-                
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "hh:mm:ss a"
-                timeLabel.text = dateFormatter.string(from: timestampDate as Date)
+
+                    if let dictionary = snapshot.value as? [String: AnyObject] {
+//                        self.textLabel?.text = dictionary["title"] as? String
+                        self.titleLabel.text = self.listing?.title
+                        self.detailLabel.text = self.listing?.text
+                        self.priceLabel.text = self.listing?.price
+
+                        if let listingImageUrl = dictionary["listingImageUrl"] as? String {
+                            self.listingImageView.loadImageUsingCacheWithUrlString(urlString: listingImageUrl)
+                        }
+                    }
+                }, withCancel: nil)
             }
+            
+//            detailTextLabel?.numberOfLines = 3
+//            detailTextLabel?.text = listing?.text
+            
+//            priceLabel.text = listing?.price
         }
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        textLabel?.frame = CGRect(x: 64, y: textLabel!.frame.origin.y - 2, width: textLabel!.frame.width, height: textLabel!.frame.height)
-        
-        detailTextLabel?.frame = CGRect(x: 64, y: detailTextLabel!.frame.origin.y + 2, width: detailTextLabel!.frame.width, height: detailTextLabel!.frame.height)
-    }
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        
+//        textLabel?.frame = CGRect(x: 100, y: textLabel!.frame.origin.y - 8, width: textLabel!.frame.width, height: textLabel!.frame.height)
+//        
+//        detailTextLabel?.frame = CGRect(x: 100, y: detailTextLabel!.frame.origin.y - 20, width: detailTextLabel!.frame.width - 80, height: detailTextLabel!.frame.height * 2)
+//    }
     
-    let profileImageView: UIImageView = {
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Title"
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textColor = UIColor.black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let detailLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Description of listing"
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor.darkGray
+        label.numberOfLines = 3
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let listingImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Image")
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -59,11 +76,11 @@ class ListingCell: UITableViewCell {
         return imageView
     }()
     
-    let timeLabel: UILabel = {
+    let priceLabel: UILabel = {
         let label = UILabel()
-        label.text = "HH:MM:SS"
-        label.font = UIFont.systemFont(ofSize: 13)
-        label.textColor = UIColor.lightGray
+        label.text = "$00.00"
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor.darkGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -71,20 +88,33 @@ class ListingCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         
-        addSubview(profileImageView)
-        addSubview(timeLabel)
+        addSubview(titleLabel)
+        addSubview(detailLabel)
+        addSubview(listingImageView)
+        addSubview(priceLabel)
         
         // ios 10 constraint anchors
         // need x, y, width, height anchors
-        profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
-        profileImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: 48).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        listingImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
+        listingImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        listingImageView.widthAnchor.constraint(equalTo: self.heightAnchor, constant: -16).isActive = true
+        listingImageView.heightAnchor.constraint(equalTo: self.heightAnchor, constant: -16).isActive = true
         
-        timeLabel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        timeLabel.centerYAnchor.constraint(equalTo: self.topAnchor, constant: 18).isActive = true
-        timeLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        timeLabel.heightAnchor.constraint(equalTo: (textLabel?.heightAnchor)!).isActive = true
+        priceLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8).isActive = true
+        priceLabel.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
+        priceLabel.widthAnchor.constraint(equalTo: (textLabel?.widthAnchor)!).isActive = true
+        priceLabel.heightAnchor.constraint(equalTo: (textLabel?.heightAnchor)!).isActive = true
+        
+        titleLabel.leftAnchor.constraint(equalTo: listingImageView.rightAnchor, constant: 8).isActive = true
+//        titleLabel.rightAnchor.constraint(equalTo: priceLabel.leftAnchor, constant: -8).isActive = true
+        titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -93).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: listingImageView.topAnchor, constant: 4).isActive = true
+        titleLabel.heightAnchor.constraint(equalTo: (textLabel?.heightAnchor)!).isActive = true
+        
+        detailLabel.leftAnchor.constraint(equalTo: listingImageView.rightAnchor, constant: 8).isActive = true
+        detailLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8).isActive = true
+        detailLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4).isActive = true
+        detailLabel.heightAnchor.constraint(equalTo: (textLabel?.heightAnchor)!).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
