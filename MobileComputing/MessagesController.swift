@@ -16,6 +16,8 @@ class MessagesController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Messages"
+        
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout",
                                                            style: .plain,
                                                            target: self,
@@ -25,7 +27,7 @@ class MessagesController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(handleNewMessage))
         
         // user is not logged in
-        checkIfUserIsLoggedIn()
+//        checkIfUserIsLoggedIn()
         
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         
@@ -118,40 +120,53 @@ class MessagesController: UITableViewController {
         titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
 //        titleView.backgroundColor = UIColor.red
         
-        let containerView = UIView()
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        titleView.addSubview(containerView)
+
+        let logoImageView = UIImageView()
+        logoImageView.image = UIImage(named: "Logo")
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        titleView.addSubview(logoImageView)
         
-        let profileImageView = UIImageView()
-        profileImageView.translatesAutoresizingMaskIntoConstraints = false
-        profileImageView.contentMode = .scaleAspectFill
-        profileImageView.layer.cornerRadius = 20
-        profileImageView.clipsToBounds = true
-        if let profileImageUrl = user.profileImageUrl {
-            profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
-        }
+        //        titleView.backgroundColor = UIColor.red
         
-        containerView.addSubview(profileImageView)
+        /*
+         let containerView = UIView()
+         containerView.translatesAutoresizingMaskIntoConstraints = false
+         titleView.addSubview(containerView)
+         
+         let profileImageView = UIImageView()
+         profileImageView.translatesAutoresizingMaskIntoConstraints = false
+         profileImageView.contentMode = .scaleAspectFill
+         profileImageView.layer.cornerRadius = 20
+         profileImageView.clipsToBounds = true
+         if let profileImageUrl = user.profileImageUrl {
+         profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
+         }
+         
+         containerView.addSubview(profileImageView)
+         
+         // ios 10 constraints
+         profileImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
+         profileImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+         profileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
+         profileImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+         
+         let nameLabel = UILabel()
+         containerView.addSubview(nameLabel)
+         nameLabel.text = user.name
+         nameLabel.translatesAutoresizingMaskIntoConstraints = false
+         
+         // constraints
+         nameLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 8).isActive = true
+         nameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
+         nameLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
+         nameLabel.heightAnchor.constraint(equalTo: profileImageView.heightAnchor).isActive = true
+         
+         containerView.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
+         containerView.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
+         */
         
-        // ios 10 constraints
-        profileImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
-        profileImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        
-        let nameLabel = UILabel()
-        containerView.addSubview(nameLabel)
-        nameLabel.text = user.name
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        // constraints
-        nameLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 8).isActive = true
-        nameLabel.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
-        nameLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
-        nameLabel.heightAnchor.constraint(equalTo: profileImageView.heightAnchor).isActive = true
-        
-        containerView.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
-        containerView.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
+        logoImageView.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
+        logoImageView.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
         
         self.navigationItem.titleView = titleView
         
@@ -161,9 +176,10 @@ class MessagesController: UITableViewController {
     func showChatController(user: User) {
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
         chatLogController.user = user
-        navigationController?.pushViewController(chatLogController, animated: true)
-    }
-    
+//        navigationController?.pushViewController(chatLogController, animated: true)
+        let navController = UINavigationController(rootViewController: chatLogController)
+        present(navController, animated: true, completion: nil)
+    }    
     
     func handleLogout() {
         

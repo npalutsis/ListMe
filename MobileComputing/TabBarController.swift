@@ -37,11 +37,6 @@ class CustomTabBarController: UITabBarController {
         userProfileController.tabBarItem.image = UIImage(named: "profile")
         
         viewControllers = [homeController, messagesController, newListingController, notificationsController, userProfileController]
-//        let recentMessagesNavController = UINavigationController(rootViewController: friendsController)
-//        recentMessagesNavController.tabBarItem.title = "Recent"
-//        recentMessagesNavController.tabBarItem.image = UIImage(named: "recent")
-//        
-//        viewControllers = [recentMessagesNavController, createDummyNavControllerWithTitle("Calls", imageName: "calls"), createDummyNavControllerWithTitle("Groups", imageName: "groups"), createDummyNavControllerWithTitle("People", imageName: "people"), createDummyNavControllerWithTitle("Settings", imageName: "settings")]
     }
     
     private func createDummyNavControllerWithTitle(_ title: String, imageName: String) -> UINavigationController {

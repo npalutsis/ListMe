@@ -12,24 +12,25 @@ class NotificationsController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = "Notifications"
+        
+        view.backgroundColor = UIColor.white
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        view.addSubview(titleTextLabel)
+        setupTitleTextLabel()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    var titleTextLabel: UILabel = {
+        let textLabel = UILabel()
+        textLabel.text = "This feature is coming soon"
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        return textLabel
+    }()
+    
+    func setupTitleTextLabel() {
+        titleTextLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        titleTextLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
-    */
-
 }

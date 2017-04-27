@@ -93,8 +93,10 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
         
         if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage{
             selectedImageFromPicker = editedImage
+            print("editted image")
         } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
             selectedImageFromPicker = originalImage
+            print("original image")
         } else {
             print("could not get image")
         }
@@ -107,7 +109,7 @@ extension LoginController: UIImagePickerControllerDelegate, UINavigationControll
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("cancled picker")
+        print("canceled picker")
         
         dismiss(animated: true, completion: nil)
     }

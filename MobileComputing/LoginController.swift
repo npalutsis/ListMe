@@ -140,6 +140,12 @@ class LoginController: UIViewController {
             nameTextField.isUserInteractionEnabled = true
         }
         
+        if loginRegisterSegmentedControl.selectedSegmentIndex == 0 {
+            profileImageView.image = UIImage(named: "Logo")
+        } else {
+            profileImageView.image = UIImage(named: "upload_profile")
+            profileImageView.contentMode = .scaleAspectFit
+        }
         
         // change height of emailTextField
         emailTextFieldHeightAnchor?.isActive = false

@@ -13,6 +13,8 @@ class UserProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "User Profile"
+        
         view.backgroundColor = UIColor.white
         
         view.addSubview(profileImageView)

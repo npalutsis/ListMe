@@ -19,6 +19,7 @@ class NewMessageController: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        navigationItem.title = "New Message"
         
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         
@@ -43,8 +44,6 @@ class NewMessageController: UITableViewController {
                 
 //                user.name = dictionary["name"]
             }
-//            print("user found")
-//            print(snapshot)
         }, withCancel: nil)
     }
     
@@ -62,13 +61,12 @@ class NewMessageController: UITableViewController {
         
         let user = users[indexPath.row]
         cell.textLabel?.text = user.name
-        cell.detailTextLabel?.text = user.email
+//        cell.detailTextLabel?.text = user.email
         
 //        cell.imageView?.image = UIImage(named: "Image")
 //        cell.imageView?.contentMode = .scaleAspectFill
         
         if let profileImageUrl = user.profileImageUrl {
-            
             cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
         }
         

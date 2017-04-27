@@ -17,7 +17,7 @@ class ListingCell: UITableViewCell {
                 let ref = FIRDatabase.database().reference().child("listings").child(id)
                 ref .observeSingleEvent(of: .value, with: { (snapshot) in
 
-//                    print(snapshot)
+//                    print(snapshot.key)
 
                     if let dictionary = snapshot.value as? [String: AnyObject] {
 //                        self.textLabel?.text = dictionary["title"] as? String
@@ -81,6 +81,7 @@ class ListingCell: UITableViewCell {
         label.text = "$00.00"
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor.darkGray
+        label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -102,12 +103,12 @@ class ListingCell: UITableViewCell {
         
         priceLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -8).isActive = true
         priceLabel.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor).isActive = true
-        priceLabel.widthAnchor.constraint(equalTo: (textLabel?.widthAnchor)!).isActive = true
+        priceLabel.widthAnchor.constraint(equalToConstant: 80).isActive = true
         priceLabel.heightAnchor.constraint(equalTo: (textLabel?.heightAnchor)!).isActive = true
         
         titleLabel.leftAnchor.constraint(equalTo: listingImageView.rightAnchor, constant: 8).isActive = true
 //        titleLabel.rightAnchor.constraint(equalTo: priceLabel.leftAnchor, constant: -8).isActive = true
-        titleLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -93).isActive = true
+        titleLabel.rightAnchor.constraint(equalTo: priceLabel.leftAnchor, constant: -4).isActive = true
         titleLabel.topAnchor.constraint(equalTo: listingImageView.topAnchor, constant: 4).isActive = true
         titleLabel.heightAnchor.constraint(equalTo: (textLabel?.heightAnchor)!).isActive = true
         

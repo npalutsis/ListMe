@@ -111,8 +111,15 @@ class HomeController: UITableViewController {
     func setupNavBarWithUser(user: User) {
         let titleView = UIView()
         titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
+        
+        let logoImageView = UIImageView()
+        logoImageView.image = UIImage(named: "Logo")
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false
+        titleView.addSubview(logoImageView)
+        
         //        titleView.backgroundColor = UIColor.red
         
+        /*
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
         titleView.addSubview(containerView)
@@ -147,6 +154,10 @@ class HomeController: UITableViewController {
         
         containerView.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
         containerView.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
+         */
+        
+        logoImageView.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
+        logoImageView.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
         
         self.navigationItem.titleView = titleView
         
