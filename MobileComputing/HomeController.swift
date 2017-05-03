@@ -39,13 +39,16 @@ class HomeController: UITableViewController {
         let ref = FIRDatabase.database().reference().child("listings")
         ref.observe(.childAdded, with: { (snapshot) in
             
+//            print("Fetching...")
+//            print(snapshot)
+            
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let listing = Listing()
                 listing.setValuesForKeys(dictionary)
                 self.listings.append(listing)
                 
                 self.listings.sort(by: { (message1, message2) -> Bool in
-                    return (message1.timestamp?.intValue)! < (message2.timestamp?.intValue)!
+                    return (message1.timestamp?.intValue)! > (message2.timestamp?.intValue)!
                 })
 
                 // this will crash because of background thread, so let's call this on dispatch_async main thread
@@ -173,8 +176,7 @@ class HomeController: UITableViewController {
     
     func handleLogout() {
         
-        do {
-            try FIRAuth.auth()?.signOut()
+        do {            try FIRAuth.auth()?.signOut()
         } catch let logoutError {
             print(logoutError)
         }

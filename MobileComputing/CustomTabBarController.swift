@@ -8,6 +8,9 @@
 
 import UIKit
 
+var listmeGreen = UIColor(r: 147, g: 190, b: 108)
+var listmeGray = UIColor(r: 220, g: 220, b: 220)
+
 class CustomTabBarController: UITabBarController {
     
     override func viewDidLoad() {
@@ -32,7 +35,7 @@ class CustomTabBarController: UITabBarController {
         notificationsController.tabBarItem.title = "Notifications"
         notificationsController.tabBarItem.image = UIImage(named: "notifications")
         
-        let userProfileController = UINavigationController(rootViewController: UserProfileController())
+        let userProfileController = UINavigationController(rootViewController: ListingPageController())
         userProfileController.tabBarItem.title = "User"
         userProfileController.tabBarItem.image = UIImage(named: "profile")
         
@@ -47,4 +50,17 @@ class CustomTabBarController: UITabBarController {
         return navController
     }
     
+}
+
+extension UITextField {
+    func setLeftPaddingPoints(_ amount:CGFloat){
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+    func setRightPaddingPoints(_ amount:CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.rightView = paddingView
+        self.rightViewMode = .always
+    }
 }

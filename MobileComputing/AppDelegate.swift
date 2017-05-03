@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRApp.configure()
         
-        UINavigationBar.appearance().barTintColor = UIColor(r: 147, g: 190, b: 108)
+        UINavigationBar.appearance().barTintColor = listmeGreen
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
 //        UINavigationBar.appearance().isTranslucent = true
@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-//        window?.rootViewController = UINavigationController(rootViewController: HomeController())
+//        window?.rootViewController = UINavigationController(rootViewController: ListingPageController())
         window?.rootViewController = CustomTabBarController()
         
         return true

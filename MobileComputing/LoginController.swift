@@ -12,6 +12,8 @@ import Firebase
 class LoginController: UIViewController {
     
     var homeController: HomeController?
+    var messagesController: MessagesController?
+    var customTabBarController: CustomTabBarController?
     
     let inputsContainerView: UIView = {
         let view = UIView()
@@ -57,7 +59,7 @@ class LoginController: UIViewController {
             }
             
             // successfully loggin in our user
-            self.homeController?.fetchUserAndSetupNavBarTitle()
+//            self.homeController?.fetchUserAndSetupNavBarTitle()
             self.dismiss(animated: true, completion: nil)
         })
     }
@@ -71,7 +73,7 @@ class LoginController: UIViewController {
     
     let nameSeparatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(r: 220, g: 220, b: 220)
+        view.backgroundColor = listmeGray
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -85,7 +87,7 @@ class LoginController: UIViewController {
     
     let emailSeparatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(r: 220, g: 220, b: 220)
+        view.backgroundColor = listmeGray
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -163,7 +165,7 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor(r: 147, g: 190, b: 108)
+        view.backgroundColor = listmeGreen
         
         view.addSubview(inputsContainerView)
         view.addSubview(loginRegisterButton)

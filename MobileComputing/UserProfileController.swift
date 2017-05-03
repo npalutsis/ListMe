@@ -24,6 +24,7 @@ class UserProfileController: UIViewController {
     lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "profileScreen")
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         return imageView
@@ -32,8 +33,8 @@ class UserProfileController: UIViewController {
     func setupProfileImageView() {
         // need x, y, width, height constraints
         profileImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        profileImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
+        profileImageView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
         profileImageView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        profileImageView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -80).isActive = true
+//        profileImageView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: -80).isActive = true
     }
 }

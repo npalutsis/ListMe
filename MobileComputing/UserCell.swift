@@ -13,22 +13,8 @@ class UserCell: UITableViewCell {
     
     var message: Message? {
         didSet {
-            if let toId = message?.toId {
-                print(toId)
-                let ref = FIRDatabase.database().reference().child("users").child(toId)
-                ref .observeSingleEvent(of: .value, with: { (snapshot) in
-                    
-                    if let dictionary = snapshot.value as? [String: AnyObject] {
-//                        self.textLabel?.text = dictionary["name"] as? String
-                        
-                        self.titleLabel.text = dictionary["name"] as? String
-                        
-                        if let profileImageUrl = dictionary["profileImageUrl"] as? String {
-                            self.profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
-                        }
-                    }
-                }, withCancel: nil)
-            }
+            
+            setupNameAndProfileImage()
             
             self.detailLabel.text = self.message?.text
 //            detailTextLabel?.text = message?.text
@@ -41,7 +27,7 @@ class UserCell: UITableViewCell {
                 
                 let elapsedTimeInSeconds = NSDate().timeIntervalSince(timestampDate as Date)
                 
-                print(elapsedTimeInSeconds)
+//                print(elapsedTimeInSeconds)
                 
                 let secondInDays: TimeInterval = 60 * 60 * 24
                 
@@ -53,6 +39,32 @@ class UserCell: UITableViewCell {
                 
                 timeLabel.text = dateFormatter.string(from: timestampDate as Date)
             }
+        }
+    }
+    
+    private func setupNameAndProfileImage() {
+        let chatPartnerId: String?
+        
+        if message?.fromId == FIRAuth.auth()?.currentUser?.uid {
+            chatPartnerId = message?.toId
+        } else {
+            chatPartnerId = message?.fromId
+        }
+        
+        if let id = message?.chatPartnerId() {
+            let ref = FIRDatabase.database().reference().child("users").child(id)
+            ref .observeSingleEvent(of: .value, with: { (snapshot) in
+                print(snapshot)
+                if let dictionary = snapshot.value as? [String: AnyObject] {
+                    //                        self.textLabel?.text = dictionary["name"] as? String
+                    
+                    self.titleLabel.text = dictionary["name"] as? String
+                    
+                    if let profileImageUrl = dictionary["profileImageUrl"] as? String {
+                        self.profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
+                    }
+                }
+            }, withCancel: nil)
         }
     }
     

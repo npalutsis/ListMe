@@ -18,5 +18,7 @@ class Listing: NSObject {
     var timestamp: NSNumber?
     var domain: String?
     var listingImageUrl: String?
+    var category: String?
+    var condition: String?
     
 }

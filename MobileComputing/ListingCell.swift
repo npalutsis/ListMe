@@ -13,24 +13,28 @@ class ListingCell: UITableViewCell {
     
     var listing: Listing? {
         didSet {
-            if let id = listing?.id {
-                let ref = FIRDatabase.database().reference().child("listings").child(id)
-                ref .observeSingleEvent(of: .value, with: { (snapshot) in
-
-//                    print(snapshot.key)
-
-                    if let dictionary = snapshot.value as? [String: AnyObject] {
-//                        self.textLabel?.text = dictionary["title"] as? String
-                        self.titleLabel.text = self.listing?.title
-                        self.detailLabel.text = self.listing?.text
-                        self.priceLabel.text = self.listing?.price
-
-                        if let listingImageUrl = dictionary["listingImageUrl"] as? String {
-                            self.listingImageView.loadImageUsingCacheWithUrlString(urlString: listingImageUrl)
-                        }
-                    }
-                }, withCancel: nil)
-            }
+//            if let id = listing?.id {
+//                let ref = FIRDatabase.database().reference().child("listings").child(id)
+//                ref .observeSingleEvent(of: .value, with: { (snapshot) in
+//
+////                    print(snapshot.key)
+//
+//                    if let dictionary = snapshot.value as? [String: AnyObject] {
+////                        self.textLabel?.text = dictionary["title"] as? String
+//                        self.titleLabel.text = self.listing?.title
+//                        self.detailLabel.text = self.listing?.text
+//                        self.priceLabel.text = self.listing?.price
+//
+//                        if let listingImageUrl = dictionary["listingImageUrl"] as? String {
+//                            self.listingImageView.loadImageUsingCacheWithUrlString(urlString: listingImageUrl)
+//                        }
+//                    }
+//                }, withCancel: nil)
+//            }
+            self.titleLabel.text = self.listing?.title
+            self.detailLabel.text = self.listing?.text
+            self.priceLabel.text = self.listing?.price
+            self.listingImageView.loadImageUsingCacheWithUrlString(urlString: (self.listing?.listingImageUrl)!)
             
 //            detailTextLabel?.numberOfLines = 3
 //            detailTextLabel?.text = listing?.text
