@@ -108,14 +108,14 @@ class NewListingController: UIViewController, UIImagePickerControllerDelegate, U
                     description != "" &&
                     self.listingImageView.image != UIImage(named: "camera") {
 
-                    let values = ["title": title,
-                                  "category": category,
-                                  "condition": condition,
-                                  "price": price,
-                                  "text": description,
-                                  "sellerId": sellerId,
-                                  "domain": domain,
-                                  "listingImageUrl": listingImageUrl,
+                    let values = ["title": title as Any,
+                                  "category": category as Any,
+                                  "condition": condition as Any,
+                                  "price": price as Any,
+                                  "text": description as Any,
+                                  "sellerId": sellerId as Any,
+                                  "domain": domain as Any,
+                                  "listingImageUrl": listingImageUrl as Any,
                                   "timestamp": timestamp] as [String : Any]
                         
                     childRef.setValue(values)

@@ -39,11 +39,9 @@ class HomeController: UITableViewController {
         let ref = FIRDatabase.database().reference().child("listings")
         ref.observe(.childAdded, with: { (snapshot) in
             
-//            print("Fetching...")
-//            print(snapshot)
-            
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let listing = Listing()
+                listing.id = snapshot.key
                 listing.setValuesForKeys(dictionary)
                 self.listings.append(listing)
                 
@@ -75,6 +73,59 @@ class HomeController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selected = listings[indexPath.row]
+        
+//        print(selected.id)
+        
+        guard let listingId = selected.id else {
+            return
+        }
+
+        let ref = FIRDatabase.database().reference().child("listings").child(listingId)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+//            print(snapshot)
+            
+            guard let dictionary = snapshot.value as? [String: AnyObject] else {
+                return
+            }
+            
+            let listing = Listing()
+            listing.id = listingId
+            listing.setValuesForKeys(dictionary)
+            
+            guard let uid = listing.sellerId else {
+                // for some reason uid = nil
+                return
+            }
+            
+            FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                if let dictionary = snapshot.value as? [String: AnyObject] {
+                    print(dictionary)
+                    selectedListingSellerName = (dictionary["name"] as? String)!
+                    //                user.setValuesForKeys(dictionary)
+                    print(selectedListingSellerName)
+                }
+            }, withCancel: nil)
+            
+            selectedListingTitle = listing.title!
+            selectedListingImageUrl = listing.listingImageUrl!
+            selectedListingPrice = listing.price!
+            selectedListingSellerId = listing.sellerId!
+            selectedListingDescription = listing.text!
+            
+//            print(selectedListingSellerId)
+            
+            let when = DispatchTime.now() + 0.1 // change 2 to desired number of seconds
+            DispatchQueue.main.asyncAfter(deadline: when) {
+                // Your code with delay
+                self.showListingController(listing: listing)
+            }
+            
+        
+        }, withCancel: nil)
     }
     
 //    func handleNewMessage() {
@@ -167,10 +218,16 @@ class HomeController: UITableViewController {
         //        titleView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showChatController)))
     }
     
-    func showChatController(user: User) {
-        let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
-        chatLogController.user = user
-        navigationController?.pushViewController(chatLogController, animated: true)
+    func showListingController(listing: Listing) {
+//        let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+//        chatLogController.user = user
+//        navigationController?.pushViewController(ListingPageController(), animated: true)
+        
+        let listingPageController = ListingPageController()
+        listingPageController.listing = listing
+        //        navigationController?.pushViewController(chatLogController, animated: true)
+        let navController = UINavigationController(rootViewController: listingPageController)
+        present(navController, animated: true, completion: nil)
     }
     
     

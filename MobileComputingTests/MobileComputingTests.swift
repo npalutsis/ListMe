@@ -7,7 +7,7 @@
 //
 
 import XCTest
-//import Firebase
+import Firebase
 @testable import MobileComputing
 
 class MobileComputingTests: XCTestCase {

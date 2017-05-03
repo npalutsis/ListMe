@@ -72,7 +72,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         profileImageView.layer.cornerRadius = 20
         profileImageView.clipsToBounds = true
         if let profileImageUrl = user.profileImageUrl {
-        profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
+            profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
         }
 
         containerView.addSubview(profileImageView)
@@ -143,20 +143,34 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         let message = messages[indexPath.item]
         cell.textView.text = message.text
         
-        if message.fromId == FIRAuth.auth()?.currentUser?.uid {
-            // outgoing green
-            cell.bubbleView.backgroundColor = listmeGreen
-            cell.textView.textColor = UIColor.white
-        } else {
-            // incoming gray
-            cell.bubbleView.backgroundColor = listmeGray
-            cell.textView.textColor = UIColor.black
-        }
+        setupCell(cell: cell, message: message)
         
         // modify bubble view width
         cell.bubbleWidthAnchor?.constant = estimateFrameForText(text: message.text!).width + 32
         
         return cell
+    }
+    
+    private func setupCell(cell: ChatMessageCell, message: Message) {
+        if let profileImageUrl = self.user?.profileImageUrl {
+            cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
+        }
+        
+        if message.fromId == FIRAuth.auth()?.currentUser?.uid {
+            // outgoing green
+            cell.bubbleView.backgroundColor = listmeGreen
+            cell.textView.textColor = UIColor.white
+            cell.profileImageView.isHidden = true
+            cell.bubbleViewLeftAnchor?.isActive = false
+            cell.bubbleViewRightAnchor?.isActive = true
+        } else {
+            // incoming gray
+            cell.bubbleView.backgroundColor = listmeGray
+            cell.textView.textColor = UIColor.black
+            cell.profileImageView.isHidden = false
+            cell.bubbleViewRightAnchor?.isActive = false
+            cell.bubbleViewLeftAnchor?.isActive = true
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -244,7 +258,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         
         childRef.updateChildValues(values) { (error, ref) in
             if error != nil {
-                print(error)
+                print(error!)
                 return
             }
             
