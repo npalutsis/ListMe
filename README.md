@@ -8,7 +8,7 @@ The primary files for the application are broken up into the following folders:
 ### View  
 These files contain code which loads and formats cells for users, listings, and message conversations. These classes are used by the other files to organize their tableViews and collectionViews.  
 
-###H elpers
+### Helpers
 This folder contains the file `Extensions.swift` which contains extension functions and other global variables that can be accessed by any of the other files.  
 
 ### Model  
