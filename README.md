@@ -1,6 +1,7 @@
 # ListMe
 
 **Author:** Nick Palutsis
+**Date:** April 3, 2017
 
 ## Files  
 The primary files for the application are broken up into the following folders:  
